@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.navbar-start, .inline-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: auto;
+}
+
+.navbar-end, .inline-end {
+    margin-left: auto;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-item {
+    padding: 10px;
+}
+
+.navbar-link {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: open sans, sans-serif;
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+}
+
+.inline-item {
+    padding: 1em;
+}
+
+.text-center {
+    text-align: center;
+}
