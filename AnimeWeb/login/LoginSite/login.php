@@ -1,0 +1,127 @@
+<?php
+	require 'config.php';
+
+	if(isset($_POST['login'])) {
+		$errMsg = '';
+
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+
+
+   if (empty($_POST['username'])) {
+            $errMsg = "Username field was empty.";
+        } elseif (empty($_POST['password'])) {
+			$errMsg = "Password field was empty.";
+        } elseif (!empty($_POST['username']) && !empty($_POST['password'])) {
+
+
+
+            if (!$connect->set_charset("utf8")) {
+                $errMsg =$connect->error;
+			}
+			
+            if (!$connect->connect_errno) {
+                $UsernameData = $connect->real_escape_string($_POST['username']);
+
+                $Proverka = "SELECT user_name, user_email, user_password_hash
+                        FROM users
+                        WHERE user_name = '" . $UsernameData . "' OR user_email = '" . $UsernameData . "';";
+                $ResultProverka = $connect->query($Proverka);
+                if ($ResultProverka->num_rows == 1) {
+                    $result_row = $ResultProverka->fetch_object();
+                    if (password_verify($_POST['password'], $result_row->user_password_hash)) {
+                        $_SESSION['username'] = $result_row->user_name;
+                        $_SESSION['email'] = $result_row->user_email;
+                        // $_SESSION['user_login_status'] = 1;
+						$errMsg = "все ок";
+						$_SESSION['username'] = $username;
+						$_SESSION['password'] = $password;
+						// $_SESSION['email']    = $password;
+						// $_SESSION['userId']   = $password;
+			
+						header('Location: dashboard.php');
+						exit;
+                    } else {
+                        $errMsg = "Wrong password. Try again.";
+                    }
+                } else {
+					$errMsg = "This user does not exist.";
+                }
+            } else {
+                $$errMsg = "Database connection problem.";
+            }
+        }
+    
+
+
+
+
+
+
+
+
+		// if($username == '')
+		// 	$errMsg = 'Enter username';
+		// if($password == '')
+		// 	$errMsg = 'Enter password';
+
+	// 	if($errMsg == '') {
+	// 		try {
+	// 			$stmt = $connect->prepare('SELECT id, fullname, username, password FROM pdo WHERE username = :username');
+	// 			$stmt->execute(array(
+	// 				':username' => $username
+	// 				));
+	// 			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	// 			if($data == false){
+	// 				$errMsg = "User $username not found.";
+	// 			}
+	// 			else {
+	// 				if($password == $data['password']) {
+	// 					$_SESSION['name'] = $data['fullname'];
+	// 					$_SESSION['username'] = $data['username'];
+	// 					$_SESSION['password'] = $data['password'];
+
+	// 					header('Location: dashboard.php');
+	// 					exit;
+	// 				}
+	// 				else
+	// 					$errMsg = 'Password not match.';
+	// 			}
+	// 		}
+	// 		catch(PDOException $e) {
+	// 			$errMsg = $e->getMessage();
+	// 		}
+	// 	}
+	}
+?>
+
+<html>
+<head><title>Login</title></head>
+	<style>
+	html, body {
+		margin: 1px;
+		border: 0;
+	}
+	</style>
+<body>
+	<div align="center">
+		<div style=" border: solid 1px #006D9C; " align="left">
+			<?php
+				if(isset($errMsg)){
+					echo '<div style="color:#FF0000;text-align:center;font-size:17px;">'.$errMsg.'</div>';
+				}
+			?>
+			<div style="background-color:#006D9C; color:#FFFFFF; padding:10px;"><b>Login</b></div>
+			<div style="margin: 15px">
+				<form action="" method="post">
+					<input type="text" name="username" value="<?php if(isset($_POST['username'])) echo $_POST['username'] ?>" autocomplete="off" class="box"/><br /><br />
+					<input type="password" name="password" value="<?php if(isset($_POST['password'])) echo $_POST['password'] ?>" autocomplete="off" class="box" /><br/><br />
+					<input type="submit" name='login' value="Login" class='submit'/><br />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

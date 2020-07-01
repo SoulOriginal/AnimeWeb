@@ -7,16 +7,16 @@ if( isset($_SESSION['discord_web']) ) {
 ?>
 
 <pre>
-<h2>Здаров ебана! <?php echo $user->username;?></h2>
-<b>ID Cuenta:</b>       <?php echo $user->user_id;?> 
-<b>Correo Cuenta:</b>   <?php echo $user->email;?> 
-<b>Cuenta Discord:</b>  <?php echo $user->username;?>#<?php echo $user->discriminator;?> 
-<b>Token Auth:</b>      <?php echo $user->access_token;?> 
-<b>Token Refresh:</b>   <?php echo $user->refresh_token;?> 
+<h2>Здаров ебана! <?= $user->username;?></h2>
+<b>ID Cuenta:</b>       <?= $user->user_id;?> 
+<b>Correo Cuenta:</b>   <?= $user->email;?> 
+<b>Cuenta Discord:</b>  <?= $user->username;?>#<?= $user->discriminator;?> 
+<b>Token Auth:</b>      <?= $user->access_token;?> 
+<b>Token Refresh:</b>   <?= $user->refresh_token;?> 
 
-<img src="https://cdn.discordapp.com/avatars/<?php echo $user->user_id;?>/<?php echo $user->avatar_id;?>.png" style="width: 52px">
+<img src="https://cdn.discordapp.com/avatars/<?= $user->user_id;?>/<?= $user->avatar_id;?>.png" style="width: 52px">
 
-<?php echo($user->flags); /* https://discordapp.com/developers/docs/resources/user#user-object-user-flags */ ?>
+<?= $user->flags; /* https://discordapp.com/developers/docs/resources/user#user-object-user-flags */ ?>
 
 <?php
 switch ($user->premium_type) {

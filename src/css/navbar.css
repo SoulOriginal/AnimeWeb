@@ -1,0 +1,49 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+}
+
+.navbar-start, .inline-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-right: auto;
+}
+
+.navbar-end, .inline-end {
+    margin-left: auto;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-dropdown {
+    display: none;
+    display: none;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: black;
+    margin-left: -70px;
+    position: absolute;
+    left: 100%;
+    transform: translate(-50%);
+}
+
+
+.user-dropdown hr {
+    margin: 4px 0;
+}
+
+.has-dropdown:hover .user-dropdown {
+    display: block;
+    
+}
+
+.navbar-item {
+    padding: 10px;
+}
+
+.navbar-link {
+    color: white;
+}

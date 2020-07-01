@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="minireset.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <? include "head.php" ?>
     <title>Document</title>
 </head>
 <body>
-<? include "navbar.php" ?>
+    <? include "navbar.php" ?>
+    <h1 style="font-size: 21.75em;"> ГЛАВНАЯ </h1>
 </body>
 </html>
 
