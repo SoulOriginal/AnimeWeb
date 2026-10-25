@@ -1,2 +1,0 @@
-<? include "views/navbar.php" ?>
-
